@@ -102,7 +102,7 @@ router.patch("/:_id", async (req, res) => {
   }
 });
 
-router.delete("/:_id", (req, res) => {
+router.delete("/:_id", async (req, res) => {
   let { _id } = req.params;
   let course = await Course.findOne({ _id });
 
@@ -140,4 +140,4 @@ router.delete("/:_id", (req, res) => {
   }
 });
 
-router.router.module.exports = router;
+module.exports = router;
