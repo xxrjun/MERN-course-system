@@ -5,6 +5,8 @@ import AuthService from "../services/auth.service";
 const NavComponent = (props) => {
   let { currentUser, setCurrentUser } = props;
   const navigate = useNavigate();
+
+  // if logout, clear user data in localStorage and redirect to homepage
   const handleLogout = () => {
     AuthService.logout();
     window.alert(
@@ -13,6 +15,7 @@ const NavComponent = (props) => {
     setCurrentUser(null);
     navigate("/");
   };
+
   return (
     <div>
       <nav>
@@ -51,6 +54,27 @@ const NavComponent = (props) => {
                   <li className="nav-item">
                     <Link className="nav-link" to="/profile">
                       Profile
+                    </Link>
+                  </li>
+                )}
+                {currentUser && (
+                  <li className="nav-item">
+                    <Link className="nav-link" to="/courses">
+                      My Courses
+                    </Link>
+                  </li>
+                )}
+                {currentUser && currentUser.user.role === "instructor" && (
+                  <li className="nav-item">
+                    <Link className="nav-link" to="/postCourse">
+                      Post Course
+                    </Link>
+                  </li>
+                )}
+                {currentUser && currentUser.user.role === "student" && (
+                  <li className="nav-item">
+                    <Link className="nav-link" to="/enrollCourse">
+                      Enroll Course
                     </Link>
                   </li>
                 )}

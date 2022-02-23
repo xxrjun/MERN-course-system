@@ -11,18 +11,57 @@ router.use((req, res, next) => {
   next();
 });
 
-// route
+// routes
 router.get("/", (req, res) => {
   Course.find({})
     .populate("instructor", ["username", "email"])
     .then((course) => {
-      res.send(course);
+      res.status(200).send(course);
     })
     .catch(() => {
       res.status(500).send("Error!! Cannot get course!!");
     });
 });
 
+// instructor's courses
+router.get("/instructor/:_instructor_id", (req, res) => {
+  let { _instructor_id } = req.params;
+  Course.find({ instructor: _instructor_id })
+    .populate("instructor", ["username", "email"])
+    .then((courses) => {
+      res.status(200).send(courses);
+    })
+    .catch(() => {
+      res.status(500).send("Cannot get course data.");
+    });
+});
+
+// student's courses
+router.get("/student/:_student_id", (req, res) => {
+  let { _student_id } = req.params;
+  Course.find({ students: _student_id })
+    .populate("instructor", ["username", "email"])
+    .then((courses) => {
+      res.status(200).send(courses);
+    })
+    .catch(() => {
+      res.status(500).send("Cannot get course data.");
+    });
+});
+
+// find course
+router.get("/findByName/:name", (req, res) => {
+  let { name } = req.params;
+  Course.find({ title: name })
+    .then((courses) => {
+      res.status(200).send(courses);
+    })
+    .catch((err) => {
+      res.status(500).send(err);
+    });
+});
+
+// find instructor and instructor's course
 router.get("/:_id", (req, res) => {
   let { _id } = req.params;
   Course.findOne({ _id })
@@ -57,6 +96,21 @@ router.post("/", async (req, res) => {
     res.status(200).send("New course has been saved.");
   } catch (err) {
     res.status(400).send("User not saved.");
+  }
+});
+
+// enroll course
+router.post("/enrollCourse/:_id", async (req, res) => {
+  // put student into request course's attribute : students array
+  let { _id } = req.params;
+  let { user_id } = req.body;
+  try {
+    let course = await Course.findOne({ _id });
+    course.students.push(user_id);
+    await course.save();
+    res.send("Done Enrollment.");
+  } catch (err) {
+    res.send(err);
   }
 });
 

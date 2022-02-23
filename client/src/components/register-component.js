@@ -27,6 +27,7 @@ const RegisterComponent = () => {
     setRole(e.target.value);
   };
 
+  // using AuthService to register and redirect to login page if suceed
   const handlerClickButton = () => {
     AuthService.register(username, email, password, role)
       .then(() => {
