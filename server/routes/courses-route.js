@@ -106,9 +106,16 @@ router.post("/enrollCourse/:_id", async (req, res) => {
   let { user_id } = req.body;
   try {
     let course = await Course.findOne({ _id });
-    course.students.push(user_id);
-    await course.save();
-    res.send("Done Enrollment.");
+    const userIsExist = course.students.indexOf(user_id) !== -1;
+    console.log("hi");
+    // check user id
+    if (userIsExist) {
+      res.send("You has been enrolled in this course.");
+    } else {
+      course.students.push(user_id);
+      await course.save();
+      res.send("Done Enrollment.");
+    }
   } catch (err) {
     res.send(err);
   }
