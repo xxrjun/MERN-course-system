@@ -11,9 +11,9 @@ A simple course system. Instructor can post courses and student can search for c
 
 Thanks Wilson Ren for this amazing course on Udemy.
 
-# Waiting for improvement
+# Extra: Waiting for improvement
 
-- Enroll validation (student): Prevent repeat enrollment.
-- Course Edition (Instructor): Instructor can edit course info including course title, description, price.
-- Role Selector (Register)
+- [**done**] Enroll validation (Student): fix repeat enrollment problem.
+- Course Edition (Instructor) : Instructor can edit course info including course title, description, price.
+- Role Selector (Register) : Easy to select role in register process
 - ... 
