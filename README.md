@@ -15,4 +15,5 @@ Thanks Wilson Ren for this amazing course on Udemy.
 
 - Enroll validation (student): Prevent repeat enrollment.
 - Course Edition (Instructor): Instructor can edit course info including course title, description, price.
+- Role Selector (Register)
 - ... 
