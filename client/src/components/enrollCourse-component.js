@@ -6,6 +6,7 @@ const EnrollCourseComponent = (props) => {
   let { currentUser, setCurrentUser } = props;
   let [query, setQuery] = useState("");
   let [queryResult, setQueryResult] = useState(null);
+  let [message, setMessage] = useState(null);
 
   const navigate = useNavigate();
   const handleTakeToLogin = () => {
@@ -30,9 +31,13 @@ const EnrollCourseComponent = (props) => {
   const handleEnroll = (e) => {
     CourseService.enroll(e.target.id, currentUser.user._id)
       .then((response) => {
-        console.log(response);
-        window.alert("Done Enrollment.");
-        navigate("/courses");
+        // if user has enrolled
+        if (!response.data.success) {
+          setMessage(response.data.message);
+        } else {
+          window.alert("Done Enrollment.");
+          navigate("/courses");
+        }
       })
       .catch((err) => {
         console.log(err);
@@ -66,6 +71,8 @@ const EnrollCourseComponent = (props) => {
           </button>
         </div>
       )}
+      {message && <div className="alert alert-danger">{message}</div>}
+
       {currentUser && queryResult && queryResult.length !== 0 && (
         <div>
           <p>Data we got back from API.</p>

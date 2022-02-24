@@ -109,7 +109,10 @@ router.post("/enrollCourse/:_id", async (req, res) => {
     const userIsExist = (await course.students.indexOf(user_id)) !== -1;
     // check user id
     if (userIsExist) {
-      res.status(400).send("You has been erolled in this course");
+      return res.json({
+        success: false,
+        message: "You has enrolled this course.",
+      });
     } else {
       course.students.push(user_id);
       await course.save();
