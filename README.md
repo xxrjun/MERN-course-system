@@ -14,6 +14,6 @@ Thanks Wilson Ren for this amazing course on Udemy.
 # Extra: Waiting for improvement
 
 - [**done**] Enroll validation (Student): fix repeat enrollment problem.
+- [**done**] Role Selector (Register) : Easy to select role in register process
 - Course Edition (Instructor) : Instructor can edit course info including course title, description, price.
-- Role Selector (Register) : Easy to select role in register process
 - ... 
