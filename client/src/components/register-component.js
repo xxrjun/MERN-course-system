@@ -8,7 +8,7 @@ const RegisterComponent = () => {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [role, setRole] = useState("");
+  const [role, setRole] = useState("student");
   const [message, setMessage] = useState("");
 
   const handlerChangeUsername = (e) => {
@@ -23,7 +23,8 @@ const RegisterComponent = () => {
     setPassword(e.target.value);
   };
 
-  const handlerChangeRole = (e) => {
+  const handlerSelectRole = (e) => {
+    console.log(e.target.value);
     setRole(e.target.value);
   };
 
@@ -77,13 +78,15 @@ const RegisterComponent = () => {
         </div>
         <br />
         <div className="form-group">
-          <label htmlFor="password">role</label>
-          <input
-            onChange={handlerChangeRole}
-            type="text"
-            className="form-control"
+          <label htmlFor="role">role</label>
+          <select
+            onChange={handlerSelectRole}
             name="role"
-          />
+            className="form-control"
+          >
+            <option value="student">Student</option>
+            <option value="instructor">Instructor</option>
+          </select>
         </div>
         <br />
         <button onClick={handlerClickButton} className="btn btn-primary">
