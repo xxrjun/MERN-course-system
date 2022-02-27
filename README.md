@@ -11,6 +11,12 @@ A simple course system. Instructor can post courses and student can search for c
 
 Thanks Wilson Ren for this amazing course on Udemy.
 
+# What I Learned From This Project
+
+- [Cors](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS)
+- [react-router-dom v6](https://reactrouter.com/docs/en/v6)
+- [Joi](https://joi.dev/api/?v=17.6.0)
+
 # Extra: Waiting for improvement
 
 - [**done**] Enroll validation (Student): fix repeat enrollment problem.
